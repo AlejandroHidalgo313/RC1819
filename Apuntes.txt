@@ -1,0 +1,78 @@
+El igual no realiza operaciones aritmeticas. Se hace con otro operador.
+
+Dos terminos unifican si:
+	- No tienen variables y son identicos
+	- Si tiene variables, unifican si puedo sustituir la variable por algo que 
+	  haga los terminos identicos
+
+2 = 1+1. --> False
+1+1 = 1+1. --> True
+(1+1) = 1+1. --> True
+1+1+1 = (1+1)+1. --> True
+1+1+1 = 1+(1+1). --> False
+Para saber si dos terminos son identicos leemos caracter a caracter, con excepciones:
+	- Si los parentesis no modifican la estructura de las operaciones.
+	- Operaciones en notacion prefija +(1,1) = 1+1. --> True.
+
+X = 3 + 2. --> X = 3 + 2	prolog nos da la solucion si unifica.
+
+El ambito de la variable empieza donde empieza la frase y acaba cuando despues del punto.
+
+X = 2, X = 1+1. --> False
+
+Una variable libre unifica con lo que sea.
+
+El operados is si que hace las operaciones arimeticas y el resultado lo unifica con la izquierda
+
+X is 1 + 1. --> X = 2
+X = 1, X is 1 + 1. --> false
+
+El operados =:= realiza la operacion arimectica a ambos lados y unifica
+1 + 1 =:= 2 * 1. --> true
+
+is y =:= necesitan que la parte que van a evaluar tengan valor, no puede haber variables sin valor
+
+X = 1, 2 is 1 + X. --> X = 1
+
+####################LISTAS#################################
+
+Listas en prolog x = [1, 2, 3, 4].
+
+El operador | lo que hay antes de la barra unifica con el primer elemento el y lo demans con el resto
+
+[Cabeza|Resto] = [1,2,3]. ---> Cabeza = 1
+			       Resto = [2,3]
+
+[c1, c2 | Resto] = [1,2,3]. --> c1 = 1
+				c2 = 2
+				Resto = 3
+
+[Cabeza|Resto] = [1]. ---> Cabeza = 1
+			   Resto = []
+
+[C|R] = []. --> False La cabeza no puede estar vacia
+[Lista] = [1,2,3]. --> False
+
+[Lista] = [[1,2,3]]. --> True
+
+[c1, c2] = [1, 2]. --> c1 = 1
+		       c2 = 2
+
+_ significa variable por defecto
+
+
+#################Principio de Induccion#######################
+
+Sea P una propiedad que quiero probar para todo elemento de un conjunto S. S es ordenable y existe un primer elemento que llamaremos n0. Al trabajar con listas el n es el tamaño de la lista y lo mismo para arboles, n-1 es quitarle algo a la lista
+
+	1. P(n0) es cierto.
+	2. Para todo n > n0, perteneciente a S
+		P(n-1) --> P(n) esto sifnifica que si para el anterior es cierto,
+				tambien los es para el n
+
+Ejemplo: Numeros naturales 
+
+	natural(1) es cierto
+	natural(n-1) --> natural(n)
+
+Un + delante de una variable significa que debe estar instanciada y con el - significa que la variable esta libre.
