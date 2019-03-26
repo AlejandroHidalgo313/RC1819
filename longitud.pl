@@ -1,9 +1,9 @@
-% longitud(Lista, longitud)
-% es cierto cuando Longitud unifica con
-% el numero de elementos de Lista
 
-longitud([], 0).
+% longitud(Lista. Longitud).
+% es cierto cuando Longitud unifica con el número de elementos de Lista
 
-% longitud (n-1, R) -> longitud(n, R2)
+longitud([],0).
 
-longitud([_|Resto], R2) :- longitud(Resto, R), R2 is R + 1.
+% longitud(n-1, R) -> longitud(n,R2)
+
+longitud([_,Resto], R2):- longitud(Resto, R), R2 is R+1.
