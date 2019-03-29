@@ -26,6 +26,6 @@ divisores(X, R) :- divisores(X, X, R).
 % divisores(+X, +Y, -Lista)
 % es cierto si Lista unifica con los divisores de X que van desde 1 a Y
 
-divisores(_, 1, [1]).
-divisores(X, Y, [Y|R]) :- Y > 1,Y2 is Y - 1, divisores(X, Y2, R), 0 is X mod Y.
+divisores(X, 1, [1]):- numbre(X).
+divisores(X, Y, [Y|R]) :- Y > 1, Y2 is Y - 1, 0 is X mod Y, divisores(X, Y2, R).
 divisores(X, Y, R) :- Y > 1, Y2 is Y - 1, divisores(X, Y2, R), Resto is X mod Y, Resto \= 0.
